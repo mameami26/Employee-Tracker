@@ -1,14 +1,22 @@
--- create_tables.sql
-
-\c movie_db
-
-CREATE TABLE movies (
+CREATE TABLE department (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(30) UNIQUE NOT NULL
 );
 
-CREATE TABLE reviews (
+CREATE TABLE role (
     id SERIAL PRIMARY KEY,
-    movie_id INTEGER REFERENCES movies(id),
-    review TEXT NOT NULL
+    title VARCHAR(30) UNIQUE NOT NULL,
+    salary DECIMAL NOT NULL,
+    department_id INTEGER NOT NULL,
+    FOREIGN KEY (department_id) REFERENCES department (id)
 );
+
+CREATE TABLE EMPLOYEE (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INTEGER NOT NULL,
+    manager_id INTEGER,
+    FOREIGN KEY (role_id) REFERENCES role (id),
+    FOREIGN KEY (manager_id) REFERENCES employee (id)
+)
