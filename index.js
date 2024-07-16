@@ -57,9 +57,14 @@ const startApp = async () => {
           message: 'Enter the salary for the role:',
         },
         {
-          type: 'input',
+          type: 'list',
           name: 'departmentId',
-          message: 'Enter the department ID for the role:',
+          message: 'shose the department ID for the role:',
+          choices: [
+         '1',
+         '2',
+         '3',
+          ],
         },
       ]);
       await queries.addRole(title, salary, departmentId);
